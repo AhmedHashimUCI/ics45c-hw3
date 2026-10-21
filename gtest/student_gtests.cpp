@@ -35,11 +35,38 @@ TEST(StringFunction, strncpy) {
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
+	char result[100] = "Lana";
+
+	EXPECT_EQ(String::strcat(result, " Del Rey"), result);
+	EXPECT_STREQ(result, "Lana Del Rey");
+
+	char empty[100] = "";
+	EXPECT_EQ(String::strcat(empty, "Lana the best"), empty);
+	EXPECT_STREQ(empty, "Lana the best");
+
+	char empty1[100] = "";
+
+	EXPECT_EQ(String::strcat(empty1, " Space"), empty1);
+	EXPECT_STREQ(empty1, " Space");
+
+   	
 }
 
 TEST(StringFunction, strncat) {
-    EXPECT_TRUE(false);
+    char result[100] = "Arctic";
+
+	EXPECT_EQ(String::strncat(result, " MonkeyAAA", 7), result);
+    EXPECT_STREQ(result, "Arctic Monkey");
+
+	char result1[100] = "Arctic";
+
+	EXPECT_EQ(String::strncat(result1, "MONKEY", 0), result1);
+    EXPECT_STREQ(result1, "Arctic");
+    
+	char result2[100] = "Arctic";
+
+	EXPECT_EQ(String::strncat(result2, "a", 1), result2);
+    EXPECT_STREQ(result2, "Arctica");
 }
 
 TEST(StringFunction, strcmp) {

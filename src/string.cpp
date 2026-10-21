@@ -53,3 +53,19 @@ char * String::strncpy(char * dest, const char* src, int n){
 	return dest;
 
 }
+
+char * String::strcat(char * dest,const char* src){
+
+	strcpy(dest + strlen(dest), src);
+	return dest;
+
+}
+
+char * String::strncat(char *dest, const char * src, int n){
+
+	strncpy(dest + strlen(dest), src, n);
+	return dest;
+
+}
+
+
