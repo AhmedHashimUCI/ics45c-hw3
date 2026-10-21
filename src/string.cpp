@@ -1,5 +1,6 @@
 #include "string.hpp"
 #include <iosfwd>
+#include <iostream>
 
 
 String::String(const char *s){
@@ -13,6 +14,37 @@ String::String(const char *s){
 
 String::String(const String &s){
 	strcpy(buf, s.buf);
+
+}
+
+
+void String::print(std::ostream & out) const{
+	
+	out << buf;
+
+}
+
+void String::read(std::istream &in){
+	int index = 0;
+	char c;
+	in >> ws;
+
+	for (int i =0; in.get(c); ++i){
+	
+	 if (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\v' || c == '\f') {
+        in.unget();
+        break;
+    }
+
+	if (i < MAXLEN -1){
+	
+		buf[index++] = c;
+
+	}
+
+}
+
+buf[index] = '\0';
 
 }
 
@@ -129,5 +161,18 @@ const char* String::strstr(const char *haystack, const char *needle){
 	
 	}
 	return nullptr;
+
+}
+
+std::ostream &operator<<(ostream &out, const String &s){
+
+	s.print(out);
+	return out;
+
+}
+
+std::istream &operator>>(istream &in, String &s){
+	s.read(in);
+	return in;
 
 }
