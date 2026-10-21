@@ -84,6 +84,37 @@ buf[index] = '\0';
 
 }
 
+String String::reverse() const{
+	String result;
+	return reverse_cpy(result.buf, this.buf);
+
+}
+
+
+int String::indexof(char, c) const{
+
+
+	const char *cha = strchar(buf, c);
+	if (cha != nullptr){
+		return cha - buf;
+	}else{
+	
+	return cha;
+		}
+	}
+		
+int String::indexof(const String &s) const{
+
+	const char *cha = strstr(buf, s);
+
+	if (cha != nullptr){
+		return cha - buf;
+	}else{
+
+	return cha;
+}
+}		
+	
 
 bool String::operator ==(const String &s) const{
 
@@ -210,13 +241,13 @@ void String::reverse_cpy(char * dest, const char *src){
 const char * String::strchr(const char *str, char c){
 	
 	  if (c == '\0') {
-        return str + strlen(str);
+        return strlen(&str);
     }
 
 	for (int i = 0; str[i] != '\0'; ++i){
 
 		if (str[i] == c){
-			return str + i;
+			return &str[i];
 
 		}
 
@@ -228,8 +259,8 @@ const char * String::strchr(const char *str, char c){
 const char* String::strstr(const char *haystack, const char *needle){
 
 	for(int i =0; haystack[i] != '\0'; ++i){
-		if (strncmp(haystack + i, needle, strlen(needle)) ==0){
-			return haystack +i;
+		if (strncmp(&haystack[i], needle, strlen(needle)) ==0){
+			return &haystack[i];
 		}
 	
 	}
