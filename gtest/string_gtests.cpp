@@ -51,6 +51,26 @@ TEST(StringClass, Index){
 }
 
 
+
+TEST(StringClass, indexofchar){
+	
+	EXPECT_EQ(String("Burn").indexOf('n'), 3);
+	EXPECT_EQ(String("Arctic").indexOf('c'), 2);
+	EXPECT_EQ(String("Time").indexOf('c'), -1);
+	EXPECT_EQ(String("Lana Del Rey").indexOf(' '), 4);
+
+
+}
+
+TEST(StringClass, indexofstr){
+
+	EXPECT_EQ(String("Who won?").indexOf(String("won?")), 4);
+	EXPECT_EQ(String("Lana Del Rey").indexOf(String("Rey")),9 );
+
+
+}
+
+
 TEST(StringClass, Assignment) {
     String s("test"), t("foo");
 

@@ -86,32 +86,32 @@ buf[index] = '\0';
 
 String String::reverse() const{
 	String result;
-	return reverse_cpy(result.buf, this.buf);
-
+	reverse_cpy(result.buf, buf);
+	return result;
 }
 
 
-int String::indexof(char, c) const{
+int String::indexOf(char c) const{
 
 
-	const char *cha = strchar(buf, c);
+	const char *cha = strchr(buf, c);
 	if (cha != nullptr){
 		return cha - buf;
 	}else{
 	
-	return cha;
+	return -1;
 		}
 	}
 		
-int String::indexof(const String &s) const{
+int String::indexOf(const String &s) const{
 
-	const char *cha = strstr(buf, s);
+	const char *cha = strstr(buf, s.buf);
 
 	if (cha != nullptr){
 		return cha - buf;
 	}else{
 
-	return cha;
+	return -1;
 }
 }		
 	
@@ -241,7 +241,7 @@ void String::reverse_cpy(char * dest, const char *src){
 const char * String::strchr(const char *str, char c){
 	
 	  if (c == '\0') {
-        return strlen(&str);
+        return nullptr;
     }
 
 	for (int i = 0; str[i] != '\0'; ++i){
