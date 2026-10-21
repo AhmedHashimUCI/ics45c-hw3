@@ -94,9 +94,33 @@ TEST(StringFunction, reverse_cpy) {
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
+    
+	const char * str = "Lana Del Rey";
+	const char* result = String::strchr(str, 'D');
+
+	EXPECT_STREQ(result, "Del Rey");
+
+	
+	const char * s = "Lana Del Rey";
+	const char *second = String::strchr(s, ' ');
+	EXPECT_STREQ(second, " Del Rey");
+
+	const char* st = "Hello";
+    const char* res = String::strchr(st, '\0');
+
+    ASSERT_NE(res, nullptr);
+    EXPECT_EQ(*res, '\0');
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false);
+    
+	const char* str = "Arctic Monkeys band";
+    const char* result = String::strstr(str, "Monkeys");
+    
+    EXPECT_STREQ(result, "Monkeys band");
+	
+	const char* s = "Lana Del Rey";
+    const char * res = String::strstr(s, "Lana");
+
+    EXPECT_STREQ(res, "Lana Del Rey");
 }

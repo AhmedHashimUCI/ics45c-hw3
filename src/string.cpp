@@ -102,3 +102,32 @@ void String::reverse_cpy(char * dest, const char *src){
 
 }
 
+const char * String::strchr(const char *str, char c){
+	
+	  if (c == '\0') {
+        return str + strlen(str);
+    }
+
+	for (int i = 0; str[i] != '\0'; ++i){
+
+		if (str[i] == c){
+			return str + i;
+
+		}
+
+	}
+	return nullptr;
+}
+
+
+const char* String::strstr(const char *haystack, const char *needle){
+
+	for(int i =0; haystack[i] != '\0'; ++i){
+		if (strncmp(haystack + i, needle, strlen(needle)) ==0){
+			return haystack +i;
+		}
+	
+	}
+	return nullptr;
+
+}
