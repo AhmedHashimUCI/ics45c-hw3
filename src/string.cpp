@@ -40,6 +40,7 @@ char &String::operator[](int index){
 	return buf[0];
 
 	}
+}
 
 int String::size() const{
 	
@@ -49,7 +50,7 @@ int String::size() const{
 
 
 
-}
+
 
 
 
@@ -62,7 +63,7 @@ void String::print(std::ostream & out) const{
 void String::read(std::istream &in){
 	int index = 0;
 	char c;
-	in >> ws;
+	in >> std::ws;
 
 	for (int i =0; in.get(c); ++i){
 	
@@ -82,6 +83,43 @@ void String::read(std::istream &in){
 buf[index] = '\0';
 
 }
+
+
+bool String::operator ==(const String &s) const{
+
+	return strcmp(buf, s.buf) == 0;
+
+}
+
+bool String::operator !=(const String &s) const{
+
+	return strcmp(buf, s.buf) != 0;
+}
+
+bool String::operator >(const String &s) const {
+
+	return strcmp(buf, s.buf) > 0;
+}
+
+bool String::operator <(const String &s) const{
+
+	return strcmp(buf, s.buf) < 0;
+
+}
+
+bool String::operator <=(const String &s) const{
+
+	return strcmp(buf, s.buf) <= 0;
+}
+
+bool String::operator >=(const String &s) const{
+
+	return strcmp(buf, s.buf) >= 0;
+}
+
+
+
+String::~String(){}
 
 
 //HELPERS
@@ -199,14 +237,14 @@ const char* String::strstr(const char *haystack, const char *needle){
 
 }
 
-std::ostream &operator<<(ostream &out, const String &s){
+std::ostream &operator<<(std::ostream &out, const String &s){
 
 	s.print(out);
 	return out;
 
 }
 
-std::istream &operator>>(istream &in, String &s){
+std::istream &operator>>(std::istream &in, String &s){
 	s.read(in);
 	return in;
 

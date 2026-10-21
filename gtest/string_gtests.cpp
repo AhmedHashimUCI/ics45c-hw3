@@ -36,7 +36,20 @@ TEST(StringClass, Comparisons) {
     EXPECT_LE(String("aaaa"), String("aaab"));
     EXPECT_EQ(String("foo"), String("foo"));
     EXPECT_NE(String("foo"), String("fooo"));
+	EXPECT_EQ(String(""), String(""));
+
+
 }
+
+
+
+TEST(StringClass, Index){
+
+	EXPECT_EQ(String("Lana")[2], 'n');
+	EXPECT_EQ(String("vow")[4], 'v');
+	EXPECT_EQ(String(" time")[0], ' ');
+}
+
 
 TEST(StringClass, Assignment) {
     String s("test"), t("foo");
