@@ -70,15 +70,27 @@ TEST(StringFunction, strncat) {
 }
 
 TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(false);
+    
+	EXPECT_EQ(String::strcmp("Arctic", "Arctic"), 0);
+	EXPECT_EQ(String::strcmp("", ""), 0);
+
 }
 
 TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(false);
+   	EXPECT_EQ(String::strncmp("Arctic", "Arctic Monkeys", 6), 0);
+	EXPECT_LT(String::strncmp("", " Lana", 1), 0);
 }
 
 TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
+    char result[100];
+	String::reverse_cpy(result,"Lana");
+	EXPECT_STREQ(result, "anaL");
+
+	char empty[100];
+	String::reverse_cpy(empty, "");
+	EXPECT_STREQ(empty, "");
+
+
 }
 
 TEST(StringFunction, strchr) {

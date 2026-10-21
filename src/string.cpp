@@ -68,4 +68,37 @@ char * String::strncat(char *dest, const char * src, int n){
 
 }
 
+int String::strcmp(const char *left, const char * right){
+	int num = 0;
+	for (int i = 0; left[i] != '\0' && left[i] == right[i]; ++i){
+		++num;
+	}
+	int boolean = left[num] - right[num];
+	return boolean;
+}
+
+int String::strncmp(const char *left, const char * right, int n){
+	
+	for (int i = 0; i < n; ++i) {
+        if (left[i] != right[i]) {
+            return static_cast<unsigned char>(left[i]) - static_cast<unsigned char>(right[i]);
+        }
+        if (left[i] == '\0') {
+            return 0;
+        }
+    }
+    return 0;
+}
+
+
+void String::reverse_cpy(char * dest, const char *src){
+
+	int len = strlen(src) -1;
+    for (int i = 0; i <= len; ++i){
+	dest[i] = src[len-i];
+	}
+
+    dest[len+1] = '\0';
+
+}
 
