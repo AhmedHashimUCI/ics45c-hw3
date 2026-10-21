@@ -17,6 +17,41 @@ String::String(const String &s){
 
 }
 
+String &String::operator=(const String &s){
+
+	if(this !=&s){
+
+		strcpy(buf, s.buf);
+		
+	}
+
+	return *this;
+}
+
+
+
+char &String::operator[](int index){
+
+	if(in_bounds(index)){
+
+		return buf[index];
+	}else {
+	
+	return buf[0];
+
+	}
+
+int String::size() const{
+	
+	return strlen(buf);
+
+}
+
+
+
+}
+
+
 
 void String::print(std::ostream & out) const{
 	
