@@ -112,9 +112,30 @@ int String::indexOf(const String &s) const{
 	}else{
 
 	return -1;
-}
+	}
 }		
 	
+
+String &String::operator +=(const String &s){
+
+	
+	const int first = size();
+	const int incoming = s.size();
+
+	if (incoming > (MAXLEN - 1) - first)
+        std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+    strncat(buf, s.buf, (MAXLEN - 1) - first);
+    return *this;
+
+}
+
+
+String String::operator+(const String &s) const{
+	String orignal(*this);
+	orignal += s;
+	return orignal;
+}
+
 
 bool String::operator ==(const String &s) const{
 

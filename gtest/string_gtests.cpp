@@ -86,3 +86,11 @@ TEST(StringClass, Assignment) {
     EXPECT_EQ(s, String());
     EXPECT_EQ(s.size(), 0);
 }
+
+TEST(StringClass, Addition){
+
+	EXPECT_EQ(String("Arctic") + String(" Monkeys"), String("Arctic Monkeys"));
+	EXPECT_EQ(String(" ") + String("String"), String(" String"));
+	EXPECT_EQ(String("String")+ String(""), String("String"));
+
+}
