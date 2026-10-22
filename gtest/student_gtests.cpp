@@ -136,4 +136,10 @@ TEST(StringFunction, strstr) {
 	const char* empty = "";
 	EXPECT_STREQ(empty, String::strstr(empty, empty));
 	EXPECT_STREQ(res, String::strstr(res, empty));
+
+	EXPECT_EQ(String::strstr("Hello", "xyz"),nullptr);
+
+	EXPECT_EQ(String::strstr("Hello", "HelloWorld"),nullptr);
+
+	EXPECT_STREQ(String::strstr("abcabc", "abc"),"abcabc");
 }

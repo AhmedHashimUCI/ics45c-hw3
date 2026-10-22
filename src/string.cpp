@@ -35,11 +35,12 @@ char &String::operator[](int index){
 	if(in_bounds(index)){
 
 		return buf[index];
-	}else {
-	std::cerr << "Error, Inde out of bound" << std::endl;	
+	}else if(!in_bounds(index)){
+	std::cerr << "ERROR: Index Out Of Bounds" << std::endl;	
 	return buf[0];
 
 	}
+	return buf[index];
 }
 
 int String::size() const{
@@ -119,7 +120,10 @@ int String::indexOf(const String &s) const{
 String &String::operator +=(const String &s){
 	
 	if (this == &s){
-
+	if(size()/2 >512){
+		std::cerr << "ERROR: String Capacity Exceeded"<< std::endl;
+		return *this;
+	}
 	String copy(s);
 	return *this +=copy;
 	}
@@ -127,8 +131,10 @@ String &String::operator +=(const String &s){
 	const int first = size();
 	const int incoming = s.size();
 
-	if (incoming > (MAXLEN - 1) - first)
+	if (incoming > (MAXLEN - 1) - first){
         std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+		return *this;
+		}
     strncat(buf, s.buf, (MAXLEN - 1) - first);
     return *this;
 
