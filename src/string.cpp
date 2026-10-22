@@ -98,7 +98,7 @@ int String::indexOf(char c) const{
 	if (cha != nullptr){
 		return cha - buf;
 	}else{
-	
+	std:: cerr << "Error: Character is not found or out of bound" << std::endl;
 	return -1;
 		}
 	}
@@ -110,7 +110,7 @@ int String::indexOf(const String &s) const{
 	if (cha != nullptr){
 		return cha - buf;
 	}else{
-
+	std::cerr << "Error, Index out of bound" << std::endl;
 	return -1;
 	}
 }		
@@ -238,7 +238,7 @@ int String::strncmp(const char *left, const char * right, int n){
 	
 	for (int i = 0; i < n; ++i) {
         if (left[i] != right[i]) {
-            return static_cast<unsigned char>(left[i]) - static_cast<unsigned char>(right[i]);
+            return left[i] - right[i];
         }
         if (left[i] == '\0') {
             return 0;
