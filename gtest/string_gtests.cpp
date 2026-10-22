@@ -94,5 +94,9 @@ TEST(StringClass, Addition){
 	EXPECT_EQ(String(" ") + String("String"), String(" String"));
 	EXPECT_EQ(String("String")+ String(""), String("String"));
 	String s("Time");
+	String e("");
 	EXPECT_EQ(s += s,String("TimeTime"));
+	EXPECT_EQ(s += e, s);
+	EXPECT_EQ(e += s, s);
+	EXPECT_EQ(e += e, e);
 }

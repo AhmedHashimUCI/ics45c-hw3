@@ -135,7 +135,10 @@ String &String::operator +=(const String &s){
         std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
 		return *this;
 		}
+
+		if ((MAXLEN -1) - first > 0 && s.size() > 0){
     strncat(buf, s.buf, (MAXLEN - 1) - first);
+	}
     return *this;
 
 }
