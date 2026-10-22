@@ -74,6 +74,14 @@ TEST(StringFunction, strcmp) {
 	EXPECT_EQ(String::strcmp("Arctic", "Arctic"), 0);
 	EXPECT_EQ(String::strcmp("", ""), 0);
 
+	EXPECT_GT(String::strcmp("Banana", "Apple"), 0);
+   
+    EXPECT_GT(String::strcmp("Applf", "Apple"), 0);
+
+    EXPECT_LT(String::strcmp("Cat", "Cats"), 0);
+
+    EXPECT_LT(String::strcmp("", "Hello"), 0);
+
 }
 
 TEST(StringFunction, strncmp) {
@@ -108,8 +116,9 @@ TEST(StringFunction, strchr) {
 	const char* st = "Hello";
     const char* res = String::strchr(st, '\0');
 
-    //ASSERT_NE(res, nullptr);
-    //EXPECT_EQ(*res, nullptr);
+    ASSERT_NE(res, nullptr);
+    EXPECT_EQ(*res, '\0');
+	EXPECT_EQ(String::strchr(st, 'z'),nullptr);
 }
 
 TEST(StringFunction, strstr) {
@@ -123,4 +132,8 @@ TEST(StringFunction, strstr) {
     const char * res = String::strstr(s, "Lana");
 
     EXPECT_STREQ(res, "Lana Del Rey");
+
+	const char* empty = "";
+	EXPECT_STREQ(empty, String::strstr(empty, empty));
+	EXPECT_STREQ(res, String::strstr(res, empty));
 }

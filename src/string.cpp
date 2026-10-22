@@ -36,7 +36,7 @@ char &String::operator[](int index){
 
 		return buf[index];
 	}else {
-	
+	std::cerr << "Error, Inde out of bound" << std::endl;	
 	return buf[0];
 
 	}
@@ -117,7 +117,12 @@ int String::indexOf(const String &s) const{
 	
 
 String &String::operator +=(const String &s){
+	
+	if (this == &s){
 
+	String copy(s);
+	return *this +=copy;
+	}
 	
 	const int first = size();
 	const int incoming = s.size();
@@ -213,16 +218,39 @@ char * String::strncpy(char * dest, const char* src, int n){
 
 char * String::strcat(char * dest,const char* src){
 
-	strcpy(dest + strlen(dest), src);
+	int len = 0;
+	while(dest[len] != '\0'){
+		++len;
+	}
+	
+	int add = 0;
+	for (int i = 0; src[i] != '\0'; ++i){
+
+		dest[len + i] = src[i];
+		add = i;
+	}
+
+	dest[len + add+1] = '\0';
 	return dest;
 
 }
 
 char * String::strncat(char *dest, const char * src, int n){
+	
+	int len = 0;
+	for (int i =0; dest[i] != '\0'; ++i){
+	++len;
+	}
+	
+	int add = 0;
+	for (int i = 0; i < n && src[i] != '\0'; ++i){
 
-	strncpy(dest + strlen(dest), src, n);
+		dest[len + i] = src[i];
+		add = i;
+	}
+
+	dest[len + add+1] = '\0';
 	return dest;
-
 }
 
 int String::strcmp(const char *left, const char * right){
@@ -261,15 +289,16 @@ void String::reverse_cpy(char * dest, const char *src){
 
 const char * String::strchr(const char *str, char c){
 	
-	  if (c == '\0') {
-        return nullptr;
-    }
 
-	for (int i = 0; str[i] != '\0'; ++i){
+	for (int i = 0; ; ++i){
 
 		if (str[i] == c){
 			return &str[i];
 
+		}
+
+		if(str[i] == '\0'){
+			break;
 		}
 
 	}
@@ -278,6 +307,11 @@ const char * String::strchr(const char *str, char c){
 
 
 const char* String::strstr(const char *haystack, const char *needle){
+
+	if(needle[0] == '\0'){
+
+		return haystack;
+	}
 
 	for(int i =0; haystack[i] != '\0'; ++i){
 		if (strncmp(&haystack[i], needle, strlen(needle)) ==0){

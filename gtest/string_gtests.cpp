@@ -48,6 +48,7 @@ TEST(StringClass, Index){
 	EXPECT_EQ(String("Lana")[2], 'n');
 	EXPECT_EQ(String("vow")[4], 'v');
 	EXPECT_EQ(String(" time")[0], ' ');
+	EXPECT_EQ(String("Time")[-2], 'T');
 }
 
 
@@ -92,5 +93,6 @@ TEST(StringClass, Addition){
 	EXPECT_EQ(String("Arctic") + String(" Monkeys"), String("Arctic Monkeys"));
 	EXPECT_EQ(String(" ") + String("String"), String(" String"));
 	EXPECT_EQ(String("String")+ String(""), String("String"));
-
+	String s("Time");
+	EXPECT_EQ(s += s,String("TimeTime"));
 }
